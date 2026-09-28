@@ -7,7 +7,18 @@ export type NavigationTab =
   | 'planner'
   | 'notes'
   | 'history'
-  | 'settings';
+  | 'settings'
+  | 'feedback';
+
+export interface FeedbackEntry {
+  id: string;
+  studentName: string;
+  rating: number; // 1 to 5
+  category: string;
+  comments: string;
+  tags?: string[];
+  submittedAt: string;
+}
 
 export interface UserProfile {
   name: string;

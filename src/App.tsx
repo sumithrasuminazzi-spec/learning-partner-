@@ -16,12 +16,13 @@ import { StudyPlanner } from './components/planner/StudyPlanner';
 import { AskFromNotes } from './components/notes/AskFromNotes';
 import { HistoryView } from './components/history/HistoryView';
 import { SettingsView } from './components/settings/SettingsView';
+import { FeedbackView } from './components/feedback/FeedbackView';
 
 const MainContent: React.FC = () => {
   const { activeTab } = useApp();
 
   return (
-    <div className="flex-1 flex flex-col min-w-0 bg-slate-50/60 dark:bg-slate-950 min-h-screen">
+    <div className="flex-1 flex flex-col min-w-0 bg-[#FFF9FB] dark:bg-[#18121B] min-h-screen text-[#3D313A] dark:text-pink-100">
       <Header />
       <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
         {activeTab === 'dashboard' && <Dashboard />}
@@ -33,6 +34,7 @@ const MainContent: React.FC = () => {
         {activeTab === 'notes' && <AskFromNotes />}
         {activeTab === 'history' && <HistoryView />}
         {activeTab === 'settings' && <SettingsView />}
+        {activeTab === 'feedback' && <FeedbackView />}
       </main>
     </div>
   );
@@ -41,7 +43,7 @@ const MainContent: React.FC = () => {
 export default function App() {
   return (
     <AppProvider>
-      <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-['Plus_Jakarta_Sans',sans-serif]">
+      <div className="flex min-h-screen bg-[#FFF9FB] dark:bg-[#18121B] text-[#3D313A] dark:text-pink-100 font-['Plus_Jakarta_Sans',sans-serif]">
         <Sidebar />
         <MainContent />
       </div>

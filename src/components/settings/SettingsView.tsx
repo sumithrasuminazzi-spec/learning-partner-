@@ -11,11 +11,14 @@ import {
   Download,
   Check,
   Shield,
+  HeartHandshake,
+  Star,
+  ArrowRight,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
 export const SettingsView: React.FC = () => {
-  const { profile, updateProfile, history, clearAllHistory } = useApp();
+  const { profile, updateProfile, history, clearAllHistory, setActiveTab } = useApp();
 
   const [name, setName] = useState(profile.name);
   const [learningLevel, setLearningLevel] = useState(profile.learningLevel);
@@ -55,19 +58,19 @@ export const SettingsView: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-20">
       {/* Header */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-center justify-between">
+      <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1622] border border-[#FCE7F0] dark:border-pink-950/40 shadow-xs flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Settings className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+          <h2 className="text-xl font-bold text-[#3D313A] dark:text-white flex items-center gap-2">
+            <Settings className="w-5 h-5 text-[#F8A8C4]" />
             <span>Preferences & Settings</span>
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-[#766874] dark:text-pink-200/70 mt-0.5">
             Configure your student persona, learning difficulty, AI explanation depth, and appearance.
           </p>
         </div>
 
         {showSavedToast && (
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-200 dark:border-emerald-800 animate-fade-in">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FEF2F6] text-[#C85D83] text-xs font-bold border border-[#FCE7F0] animate-fade-in">
             <Check className="w-4 h-4" />
             <span>Preferences Saved</span>
           </div>
@@ -76,15 +79,15 @@ export const SettingsView: React.FC = () => {
 
       <form onSubmit={handleSaveProfile} className="space-y-6">
         {/* 1. PROFILE SECTION */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
-            <User className="w-4 h-4" />
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1622] border border-[#FCE7F0] dark:border-pink-950/40 shadow-xs space-y-4">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-[#C85D83] flex items-center gap-2">
+            <User className="w-4 h-4 text-[#F8A8C4]" />
             <span>Student Profile</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-[#3D313A] dark:text-pink-100 mb-1.5">
                 Display Name
               </label>
               <input
@@ -92,18 +95,18 @@ export const SettingsView: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Student"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFF9FB] dark:bg-pink-950/20 border border-[#FCE7F0] text-sm text-[#3D313A] dark:text-pink-100 focus:outline-none focus:ring-2 focus:ring-[#F8A8C4]/40"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-[#3D313A] dark:text-pink-100 mb-1.5">
                 Academic Level
               </label>
               <select
                 value={learningLevel}
                 onChange={(e) => setLearningLevel(e.target.value as any)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFF9FB] dark:bg-pink-950/20 border border-[#FCE7F0] text-sm text-[#3D313A] dark:text-pink-100 focus:outline-none focus:ring-2 focus:ring-[#F8A8C4]/40"
               >
                 <option value="Middle School">Middle School</option>
                 <option value="High School">High School</option>
@@ -116,9 +119,9 @@ export const SettingsView: React.FC = () => {
         </div>
 
         {/* 2. APPEARANCE SECTION */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
-            <Sun className="w-4 h-4" />
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1622] border border-[#FCE7F0] dark:border-pink-950/40 shadow-xs space-y-4">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-[#7C3AED] flex items-center gap-2">
+            <Sun className="w-4 h-4 text-[#C4B5FD]" />
             <span>Appearance & Theme</span>
           </h3>
 
@@ -126,10 +129,10 @@ export const SettingsView: React.FC = () => {
             <button
               type="button"
               onClick={() => updateProfile({ darkMode: false })}
-              className={`p-4 rounded-2xl border text-left flex items-center justify-between transition-all ${
+              className={`p-4 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                 !profile.darkMode
-                  ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/20 ring-2 ring-indigo-500/20'
-                  : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
+                  ? 'border-[#F8A8C4] bg-[#FEF2F6] ring-2 ring-[#F8A8C4]/20'
+                  : 'border-[#FCE7F0] dark:border-pink-900/40 hover:bg-[#FFF9FB] dark:hover:bg-pink-950/20'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -137,99 +140,94 @@ export const SettingsView: React.FC = () => {
                   <Sun className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm text-slate-900 dark:text-white">Light Mode</div>
-                  <div className="text-[11px] text-slate-500">Crisp, high-contrast study view</div>
+                  <div className="font-bold text-sm text-[#3D313A] dark:text-white">Light Mode</div>
+                  <div className="text-[11px] text-[#766874]">Soft pastel & radiant aesthetic</div>
                 </div>
               </div>
-              {!profile.darkMode && <Check className="w-4 h-4 text-indigo-600" />}
+              {!profile.darkMode && <Check className="w-4 h-4 text-[#C85D83]" />}
             </button>
 
             <button
               type="button"
               onClick={() => updateProfile({ darkMode: true })}
-              className={`p-4 rounded-2xl border text-left flex items-center justify-between transition-all ${
+              className={`p-4 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                 profile.darkMode
-                  ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/20 ring-2 ring-indigo-500/20'
-                  : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
+                  ? 'border-[#C4B5FD] bg-[#1A131F] ring-2 ring-[#C4B5FD]/20'
+                  : 'border-[#FCE7F0] dark:border-pink-900/40 hover:bg-[#FFF9FB] dark:hover:bg-pink-950/20'
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-slate-800 text-indigo-300 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 flex items-center justify-center">
                   <Moon className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm text-slate-900 dark:text-white">Dark Mode</div>
-                  <div className="text-[11px] text-slate-500">Easy on the eyes for night study</div>
+                  <div className="font-bold text-sm text-[#3D313A] dark:text-white">Dark Mode</div>
+                  <div className="text-[11px] text-[#766874]">Gentle night-time contrast</div>
                 </div>
               </div>
-              {profile.darkMode && <Check className="w-4 h-4 text-indigo-600" />}
+              {profile.darkMode && <Check className="w-4 h-4 text-[#C4B5FD]" />}
             </button>
           </div>
         </div>
 
-        {/* 3. LEARNING PREFERENCES */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
-            <GraduationCap className="w-4 h-4" />
-            <span>Learning Difficulty & Defaults</span>
+        {/* 3. AI TUTORING & EXPLANATION DEPTH */}
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1622] border border-[#FCE7F0] dark:border-pink-950/40 shadow-xs space-y-4">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-[#D96B43] flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#FDBA9A]" />
+            <span>AI Tutoring & Explanation Style</span>
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {(['Beginner', 'Intermediate', 'Advanced'] as const).map((diff) => (
-              <button
-                key={diff}
-                type="button"
-                onClick={() => setDefaultDifficulty(diff)}
-                className={`p-3.5 rounded-2xl border text-left transition-all ${
-                  defaultDifficulty === diff
-                    ? 'border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/30 ring-2 ring-indigo-500/20'
-                    : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
-                }`}
-              >
-                <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
-                  <span>{diff}</span>
-                  {defaultDifficulty === diff && <Check className="w-4 h-4 text-indigo-600" />}
-                </div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                  {diff === 'Beginner' && 'Foundational concepts and plain language'}
-                  {diff === 'Intermediate' && 'Balanced textbook explanations'}
-                  {diff === 'Advanced' && 'Rigorous mathematical and theoretical depth'}
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
+          <div className="space-y-3">
+            <div>
+              <label className="block text-xs font-bold text-[#3D313A] dark:text-pink-100 mb-1.5">
+                Default Difficulty Level
+              </label>
+              <div className="grid grid-cols-3 gap-3">
+                {(['Beginner', 'Intermediate', 'Advanced'] as const).map((lvl) => (
+                  <button
+                    key={lvl}
+                    type="button"
+                    onClick={() => setDefaultDifficulty(lvl)}
+                    className={`py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                      defaultDifficulty === lvl
+                        ? 'bg-gradient-to-r from-[#F8A8C4] to-[#C4B5FD] text-white shadow-xs'
+                        : 'bg-[#FFF9FB] text-[#766874] border border-[#FCE7F0] hover:bg-[#FEF2F6]'
+                    }`}
+                  >
+                    {lvl}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-        {/* 4. AI EXPLANATION PREFERENCES */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
-            <Sparkles className="w-4 h-4" />
-            <span>AI Tutor Response Style</span>
-          </h3>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {(['Short answers', 'Detailed answers', 'Step-by-step explanations'] as const).map((style) => (
-              <button
-                key={style}
-                type="button"
-                onClick={() => setAnswerStyle(style)}
-                className={`p-3.5 rounded-2xl border text-left transition-all ${
-                  answerStyle === style
-                    ? 'border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/30 ring-2 ring-indigo-500/20'
-                    : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
-                }`}
-              >
-                <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
-                  <span>{style}</span>
-                  {answerStyle === style && <Check className="w-4 h-4 text-indigo-600" />}
-                </div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                  {style === 'Short answers' && 'Concise bullet points & executive summaries'}
-                  {style === 'Detailed answers' && 'Comprehensive academic explanations'}
-                  {style === 'Step-by-step explanations' && 'Structured guided derivations & walkthroughs'}
-                </div>
-              </button>
-            ))}
+            <div>
+              <label className="block text-xs font-bold text-[#3D313A] dark:text-pink-100 mb-1.5">
+                Preferred Explanation Structure
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  'Short answers',
+                  'Detailed answers',
+                  'Step-by-step explanations',
+                ].map((style) => (
+                  <button
+                    key={style}
+                    type="button"
+                    onClick={() => setAnswerStyle(style as any)}
+                    className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      answerStyle === style
+                        ? 'border-[#F8A8C4] bg-[#FEF2F6] ring-2 ring-[#F8A8C4]/20'
+                        : 'border-[#FCE7F0] hover:bg-[#FFF9FB]'
+                    }`}
+                  >
+                    <div className="font-bold text-xs text-[#3D313A] dark:text-white flex items-center justify-between">
+                      <span>{style}</span>
+                      {answerStyle === style && <Check className="w-3.5 h-3.5 text-[#C85D83]" />}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -237,41 +235,69 @@ export const SettingsView: React.FC = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md shadow-indigo-600/30 transition-all hover:scale-[1.01]"
+            className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-[#F8A8C4] via-[#EFA3C0] to-[#C4B5FD] hover:opacity-95 text-white font-bold text-xs shadow-sm shadow-pink-200 transition-all hover:scale-[1.01] active:scale-[0.98] cursor-pointer"
           >
-            Save All Preferences
+            Save Preferences
           </button>
         </div>
       </form>
 
+      {/* 4. FEEDBACK & COMMUNITY SECTION */}
+      <div className="p-6 rounded-3xl bg-gradient-to-r from-[#FEF2F6] via-[#F8F5FF] to-[#FFF7F2] border border-[#FCE7F0] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <HeartHandshake className="w-5 h-5 text-[#F8A8C4]" />
+            <h3 className="font-bold text-sm text-[#3D313A] dark:text-white">
+              Student Feedback & Suggestions
+            </h3>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white text-[#C85D83] border border-[#FCE7F0]">
+              1-5 Stars ★
+            </span>
+          </div>
+          <p className="text-xs text-[#766874] dark:text-pink-200/70 max-w-md">
+            Rate your study experience, suggest new tools, or report issues directly to help us make EduGenie even more magical!
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('feedback')}
+          className="px-5 py-2.5 rounded-2xl bg-white dark:bg-[#1E1622] hover:bg-[#FEF2F6] text-[#C85D83] font-bold text-xs border border-[#FCE7F0] shadow-2xs flex items-center justify-center gap-2 transition-all hover:scale-[1.02] cursor-pointer shrink-0"
+        >
+          <Star className="w-3.5 h-3.5 fill-[#F8A8C4] text-[#F8A8C4]" />
+          <span>Give Feedback</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
       {/* 5. DATA & STORAGE MANAGEMENT */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 flex items-center gap-2">
-          <Database className="w-4 h-4" />
+      <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1622] border border-[#FCE7F0] dark:border-pink-950/40 shadow-xs space-y-4">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-[#C85D83] flex items-center gap-2">
+          <Database className="w-4 h-4 text-[#F8A8C4]" />
           <span>Data & Local Storage</span>
         </h3>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[#FFF9FB] dark:bg-pink-950/20 border border-[#FCE7F0]">
           <div>
-            <div className="font-bold text-sm text-slate-900 dark:text-white">Export Study Data</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="font-bold text-sm text-[#3D313A] dark:text-white">Export Study Data</div>
+            <div className="text-xs text-[#766874] dark:text-pink-200/70">
               Download your full study history, quiz scores, and settings as a JSON archive.
             </div>
           </div>
           <button
             type="button"
             onClick={handleExportData}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-100 transition-colors shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-[#766874] bg-white dark:bg-slate-700 border border-[#FCE7F0] hover:bg-[#FEF2F6] transition-colors shrink-0 cursor-pointer"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5 text-[#F8A8C4]" />
             <span>Export JSON</span>
           </button>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/60">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/60">
           <div>
             <div className="font-bold text-sm text-rose-700 dark:text-rose-300">Clear History Archive</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-xs text-[#766874] dark:text-pink-200/70">
               Permanently wipe all past chat messages, generated notes, and quiz performance metrics.
             </div>
           </div>
@@ -282,7 +308,7 @@ export const SettingsView: React.FC = () => {
                 clearAllHistory();
               }
             }}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 transition-colors shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-rose-500 hover:bg-rose-600 transition-colors shrink-0 cursor-pointer"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Clear History</span>

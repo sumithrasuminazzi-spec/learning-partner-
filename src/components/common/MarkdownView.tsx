@@ -24,7 +24,7 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ content, className =
         return (
           <code
             key={i}
-            className="px-1.5 py-0.5 rounded text-xs font-mono bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200/50 dark:border-indigo-800/40"
+            className="px-1.5 py-0.5 rounded text-xs font-mono bg-[#FEF2F6] dark:bg-pink-950/60 text-[#C85D83] dark:text-[#F8A8C4] border border-[#FCE7F0]"
           >
             {part.slice(1, -1)}
           </code>
@@ -140,7 +140,7 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ content, className =
       elements.push(
         <blockquote
           key={i}
-          className="border-l-4 border-indigo-500 pl-3 py-1 my-2 bg-indigo-50/50 dark:bg-indigo-950/20 text-slate-700 dark:text-slate-300 italic rounded-r text-sm"
+          className="border-l-4 border-[#F8A8C4] pl-3 py-1 my-2 bg-[#FFF9FB] dark:bg-pink-950/20 text-[#3D313A] dark:text-pink-200 italic rounded-r text-sm"
         >
           {renderInline(line.slice(2))}
         </blockquote>
@@ -151,8 +151,8 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ content, className =
     // Bullet points
     if (line.match(/^[\*\-]\s+/)) {
       elements.push(
-        <div key={i} className="flex items-start gap-2 my-1 text-sm text-slate-700 dark:text-slate-300 pl-2">
-          <span className="text-indigo-500 dark:text-indigo-400 mt-1 select-none text-xs">•</span>
+        <div key={i} className="flex items-start gap-2 my-1 text-sm text-[#3D313A] dark:text-pink-100 pl-2">
+          <span className="text-[#F8A8C4] mt-1 select-none text-xs">•</span>
           <span className="flex-1 leading-relaxed">{renderInline(line.replace(/^[\*\-]\s+/, ''))}</span>
         </div>
       );
@@ -163,8 +163,8 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ content, className =
     const numberMatch = line.match(/^(\d+)\.\s+(.+)/);
     if (numberMatch) {
       elements.push(
-        <div key={i} className="flex items-start gap-2 my-1 text-sm text-slate-700 dark:text-slate-300 pl-2">
-          <span className="font-semibold text-indigo-600 dark:text-indigo-400 text-xs min-w-[1.2rem] mt-0.5">
+        <div key={i} className="flex items-start gap-2 my-1 text-sm text-[#3D313A] dark:text-pink-100 pl-2">
+          <span className="font-semibold text-[#F8A8C4] text-xs min-w-[1.2rem] mt-0.5">
             {numberMatch[1]}.
           </span>
           <span className="flex-1 leading-relaxed">{renderInline(numberMatch[2])}</span>
