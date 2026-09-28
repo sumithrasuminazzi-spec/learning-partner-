@@ -1,0 +1,6 @@
+{
+  "name": "EduGenie",
+  "description": "EduGenie - Your AI-Powered Learning Companion for tutoring, study materials, quizzes, flashcards, study planner, and notes analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
